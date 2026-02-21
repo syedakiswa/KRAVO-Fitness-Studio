@@ -65,17 +65,17 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="mt-12">
-                <a 
-                  href="https://wa.me/0368267316" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-3 bg-[#25D366] text-white px-8 py-4 font-bold uppercase tracking-wider hover:opacity-90 transition-opacity"
-                >
-                  <MessageSquare size={20} />
-                  <span>Chat on WhatsApp</span>
-                </a>
-              </div>
+          <div className="mt-12">
+  <a 
+    href="https://wa.me/92368267316" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="inline-flex items-center space-x-3 bg-[#25D366] text-white px-8 py-4 font-bold uppercase tracking-wider hover:opacity-90 transition-opacity"
+  >
+    <MessageSquare size={20} />
+    <span>Chat on WhatsApp</span>
+  </a>
+</div>
             </motion.div>
 
             {/* Form */}
