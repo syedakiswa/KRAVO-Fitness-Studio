@@ -67,7 +67,7 @@ export default function Contact() {
 
           <div className="mt-12">
   <a 
-    href="https://wa.me/92368267316" 
+    href="https://wa.me/+923368267316" 
     target="_blank" 
     rel="noopener noreferrer"
     className="inline-flex items-center space-x-3 bg-[#25D366] text-white px-8 py-4 font-bold uppercase tracking-wider hover:opacity-90 transition-opacity"
