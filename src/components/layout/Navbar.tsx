@@ -30,7 +30,6 @@ export function Navbar() {
     setIsOpen(false);
   }, [location]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -38,12 +37,8 @@ export function Navbar() {
 
   return (
     <>
-      <nav
-        className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          isScrolled ? 'bg-white shadow-md py-2' : 'bg-white py-2'
-        )}
-      >
+      {/* Navbar — highest z-index so button always on top */}
+      <nav className="fixed top-0 left-0 right-0 z-[100] bg-white transition-all duration-300 shadow-md py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center">
 
@@ -54,7 +49,7 @@ export function Navbar() {
                 alt="KRAVO Fitness Studio"
                 className={cn(
                   'w-auto object-contain transition-all duration-300',
-                  isScrolled ? 'h-16 md:h-16' : 'h-24 md:h-28'
+                  isScrolled ? 'h-16' : 'h-24 md:h-28'
                 )}
               />
             </Link>
@@ -75,34 +70,30 @@ export function Navbar() {
                   {link.name}
                 </Link>
               ))}
-              <Button size="sm" className="ml-4">
-                Join Now
-              </Button>
+              <Button size="sm" className="ml-4">Join Now</Button>
             </div>
 
-            {/* Mobile Menu Button — always z-50, above the overlay */}
-            <div className="md:hidden flex items-center">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="p-2 text-secondary relative z-[60]"
-                aria-label={isOpen ? 'Close menu' : 'Open menu'}
-              >
-                {isOpen ? <X size={28} /> : <Menu size={28} />}
-              </button>
-            </div>
+            {/* Mobile button — z-[200] ensures it is ALWAYS above the overlay */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden p-2 text-secondary relative z-[200]"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+
           </div>
         </div>
       </nav>
 
-      {/* Mobile Nav Overlay — separate from nav so z-index stacking is clean */}
+      {/* Mobile overlay — z-[90] so navbar (z-100) stays above it */}
       <div
         className={cn(
-          'fixed inset-0 z-[55] bg-white transition-transform duration-300 ease-in-out md:hidden',
+          'fixed inset-0 z-[90] bg-white transition-transform duration-300 ease-in-out md:hidden',
           isOpen ? 'translate-x-0' : 'translate-x-full'
         )}
       >
-        {/* Top spacer so links don't hide behind the navbar/logo */}
-        <div className="pt-28 flex flex-col items-center space-y-8 p-8">
+        <div className="pt-32 flex flex-col items-center space-y-8 p-8">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.path}
@@ -118,9 +109,7 @@ export function Navbar() {
             </Link>
           ))}
 
-          <Button size="lg" className="w-full">
-            Join Now
-          </Button>
+          <Button size="lg" className="w-full">Join Now</Button>
 
           <div className="flex items-center space-x-2 text-secondary/60">
             <Phone size={18} />
